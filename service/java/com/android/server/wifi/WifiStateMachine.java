@@ -4216,6 +4216,7 @@ public class WifiStateMachine extends StateMachine implements WifiNative.WifiRss
         @Override
         public void enter() {
             mWifiNative.stopHal();
+            mWifiMonitor.killSupplicant(mP2pSupported); //fix android stop start issure.
             mWifiNative.unloadDriver();
             if (mWifiP2pChannel == null) {
                 mWifiP2pChannel = new AsyncChannel();
